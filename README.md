@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+# Productivity Tracker
+_A React demo application_
+CSE 490R
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
