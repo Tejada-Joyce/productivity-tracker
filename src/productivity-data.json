@@ -1,10 +1,24 @@
 {
-    "categories": [
-        "Work",
-        "Exercise",
-        "Social Media",
-        "Entertainment",
-        "School"
+    "categories": [{
+            "name": "Work",
+            "hex": "#F66D44"
+        },
+        {
+            "name": "Exercise",
+            "hex": "#FEAE65"
+        },
+        {
+            "name": "Social Media",
+            "hex": "#E6F69D"
+        },
+        {
+            "name": "Entertainment",
+            "hex": "#AADEA7"
+        },
+        {
+            "name": "School",
+            "hex": "#64C2A6"
+        }
     ],
     "activities": [{
             "name": "Monday shift",
