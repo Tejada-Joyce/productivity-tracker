@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Navigation = () => {
     return (
-        <nav className="navbar navbar-expand-sm bg-dark">
+        <nav className="navbar navbar-expand-sm navbar-light bg-light">
             <Link className="nav-link" to="/">OurAppLogo</Link>
             <div className="collapse navbar-collapse justify-content-end">
               <ul className="navbar-nav ml-auto">
