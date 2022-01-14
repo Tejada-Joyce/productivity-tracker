@@ -16,6 +16,7 @@ const TimeItem = ({ label }) => {
         onChange={(newValue) => {
           setValue(newValue);
         }}
+        className="date_time"
       />
     </LocalizationProvider>
   );

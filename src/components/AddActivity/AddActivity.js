@@ -1,9 +1,11 @@
 import categories from "../../data/categories.json";
 import CategoriesList from "./CategoriesList";
 import TimeItem from "./TimeItem";
+import "./AddActivity.css";
+
 const AddActivities = () => {
   return (
-    <div>
+    <div className="container">
       <h1>Add Activity</h1>
       <form>
         <CategoriesList categories={categories} />

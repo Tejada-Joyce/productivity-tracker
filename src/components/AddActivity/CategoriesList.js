@@ -1,3 +1,5 @@
+import "./CategoriesList.css";
+
 const CategoriesList = ({ categories }) => {
   return (
     <select>
