@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "name": "Work"
+  },
+  {
+    "id": 2,
+    "name": "Exercise"
+  },
+  {
+    "id": 3,
+    "name": "Social Media"
+  },
+  {
+    "id": 4,
+    "name": "Entertainment"
+  },
+  {
+    "id": 5,
+    "name": "School"
+  }
+]
