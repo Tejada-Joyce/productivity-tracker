@@ -10,11 +10,21 @@ form {
 
 input,
 button,
-select,
-.date_time {
-  font-size: 1rem;
+select {
+  display: block;
+  font-size: 1rem !important;
   padding: 2% 2%;
-  margin-left: 1.2em;
-  width: 90%;
   border-radius: 7px;
+  width: 100%;
+}
+
+.stack_container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+@media (min-width: 580px) {
+  .stack_container {
+    width: 60%;
+  }
 }

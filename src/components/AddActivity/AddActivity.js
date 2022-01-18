@@ -3,8 +3,10 @@ import CategoriesList from "./CategoriesList";
 import TimeItem from "./TimeItem";
 import "./AddActivity.css";
 import { useState } from "react";
+import Stack from "@mui/material/Stack";
 
 const AddActivities = () => {
+  const [errorMessage, setErrorMessage] = useState();
   const [chosenCategory, setChosenCategory] = useState("");
   const [enteredActivity, setEnteredActivity] = useState("");
   const [enteredStartTime, setEnteredStartTime] = useState(new Date());
@@ -29,12 +31,12 @@ const AddActivities = () => {
   const addActivityHandler = (e) => {
     e.preventDefault();
     if (!chosenCategory || enteredActivity.trim().length === 0) {
-      console.log("Please fill out all fields.");
+      setErrorMessage("Please fill out all fields.");
       return;
     }
 
     if (enteredEndTime <= enteredStartTime) {
-      console.log("Please enter a valid time.");
+      setErrorMessage("Please enter a valid time.");
       return;
     }
 
@@ -45,6 +47,7 @@ const AddActivities = () => {
       endTime: enteredEndTime,
     };
     console.log(newActivity);
+    setErrorMessage();
     setChosenCategory("");
     setEnteredActivity("");
     setEnteredStartTime(new Date());
@@ -54,35 +57,38 @@ const AddActivities = () => {
   return (
     <div className="container">
       <h1>Add Activity</h1>
+      {errorMessage && <p>{errorMessage}</p>}
       <form onSubmit={addActivityHandler}>
-        <CategoriesList
-          categories={categories}
-          chosenCategory={chosenCategory}
-          onSaveCategory={saveCategoryHandler}
-        />
+        <Stack spacing={2} className="stack_container">
+          <CategoriesList
+            categories={categories}
+            chosenCategory={chosenCategory}
+            onSaveCategory={saveCategoryHandler}
+          />
+          <input
+            value={enteredActivity}
+            placeholder="Activity Name"
+            onChange={activityChangeHandler}
+            required
+          />
+          <TimeItem
+            label="Start Date/Time"
+            value={enteredStartTime}
+            onChange={startTimeChangeHandler}
+          />
+          <TimeItem
+            label="End Date/Time"
+            value={enteredEndTime}
+            onChange={endTimeChangeHandler}
+          />
+          {/* <label htmlFor="birthdaytime">Birthday (date and time):</label>
         <input
-          value={enteredActivity}
-          placeholder="Activity Name"
-          onChange={activityChangeHandler}
-          required
-        />
-        <TimeItem
-          label="Start Date/Time"
-          value={enteredStartTime}
-          onChange={startTimeChangeHandler}
-        />
-        <TimeItem
-          label="End Date/Time"
-          value={enteredEndTime}
-          onChange={endTimeChangeHandler}
-        />
-        {/* <label htmlFor="birthdaytime">Birthday (date and time):</label>
-        <input
-          type="datetime-local"
-          id="birthdaytime"
-          name="birthdaytime"
-        ></input> */}
-        <button type="submit">Add</button>
+        type="datetime-local"
+        id="birthdaytime"
+        name="birthdaytime"
+      />*/}
+          <button type="submit">Add</button>
+        </Stack>
       </form>
     </div>
   );
