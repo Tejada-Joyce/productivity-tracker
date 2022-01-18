@@ -1,6 +1,8 @@
+import styles from "./CategoryDetail.module.css"
+
 const CategoryDetail = (props) => {
     return (
-        <div>
+        <div className={styles.categoryDetail}>
             <div>
                 <span>Activity One</span>
             </div>

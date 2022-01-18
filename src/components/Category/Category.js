@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import CategoryDropDown from "./CatergoryDropDown"
-import FilteredCategory from "./FilteredCategory";
+import CategoryCard from "./CategoryCard";
 
 const Category = ({ match, location }) => {
     const { category_type } = useParams();
@@ -8,8 +8,7 @@ const Category = ({ match, location }) => {
     return (
         <>
         <h1>{category_type}</h1>
-        <CategoryDropDown />
-        <FilteredCategory />
+        <CategoryCard />
         </>
     );
 }
