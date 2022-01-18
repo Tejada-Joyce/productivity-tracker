@@ -1,12 +1,11 @@
 import categories from "../../data/categories.json";
 import CategoriesList from "./CategoriesList";
 import TimeItem from "./TimeItem";
-
 import "./AddActivity.css";
 import { useState } from "react";
 
 const AddActivities = () => {
-  const [chosenCategory, setChosenCategory] = useState();
+  const [chosenCategory, setChosenCategory] = useState("");
   const [enteredActivity, setEnteredActivity] = useState("");
   const [enteredStartTime, setEnteredStartTime] = useState(new Date());
   const [enteredEndTime, setEntereEndTime] = useState(new Date());
@@ -29,6 +28,16 @@ const AddActivities = () => {
 
   const addActivityHandler = (e) => {
     e.preventDefault();
+    if (!chosenCategory || enteredActivity.trim().length === 0) {
+      console.log("Please fill out all fields.");
+      return;
+    }
+
+    if (enteredEndTime <= enteredStartTime) {
+      console.log("Please enter a valid time.");
+      return;
+    }
+
     const newActivity = {
       name: enteredActivity,
       category: chosenCategory,
@@ -36,7 +45,7 @@ const AddActivities = () => {
       endTime: enteredEndTime,
     };
     console.log(newActivity);
-    setChosenCategory();
+    setChosenCategory("");
     setEnteredActivity("");
     setEnteredStartTime(new Date());
     setEntereEndTime(new Date());
