@@ -8,6 +8,7 @@ import styles from './Home.module.css';
 const Home = () => {
     const userData = require('../../productivity-data.json');
     const [startDate, setStartDate] = useState(moment());
+    const [endDate, setEndDate] = useState(null);
 
     const changeDateHandler = (event) => {
         if (event.target.value === 'true') {
@@ -43,19 +44,31 @@ const Home = () => {
         });
     };
 
-    return (<div className={styles.PieContainer}>
-        <DatePicker clickHandler={changeDateHandler} date={startDate.format("dddd, MMM Do YYYY")} />
-        <PieChart
-            className={styles.PieContainer__Pie}
-            animate
-            animationDuration={500}
-            animationEasing="ease-out"
-            data={transformUserData(userData.categories, userData.activities, startDate)}
-            radius={46}
-            label={({dataEntry}) => dataEntry.percentage === 0 ? "" : `${dataEntry.key} - ${Math.round(dataEntry.percentage)}%`}
-            labelPosition={70}
-            labelStyle={{fontSize: "3px"}}
-        />
+    return (<div>
+        <div className={styles.PieContainer}>
+            <DatePicker
+                clickHandler={changeDateHandler}
+                date={moment().isSame(startDate, 'd') ? `Today, ${startDate.format("MMM Do")}` : startDate.format("dddd, MMM Do")}
+            />
+            <PieChart
+                className={styles.PieContainer__Pie}
+                animate
+                animationDuration={500}
+                animationEasing="ease-out"
+                data={transformUserData(userData.categories, userData.activities, startDate)}
+                radius={46}
+                label={({dataEntry}) => dataEntry.percentage === 0 ? "" : `${dataEntry.key} - ${Math.round(dataEntry.percentage)}%`}
+                labelPosition={70}
+                labelStyle={{fontSize: "3px"}}
+            />
+        </div>
+        <ul className={styles.DetailList}>
+            {transformUserData(userData.categories, userData.activities, startDate).map(row => {
+                let time = row.value === 0 ? '' : <span>{moment.duration(row.value, 'minutes').humanize()}</span>;
+                let link = <a className={styles.DetailList__Link} href={`/category/${row.key}`} style={{backgroundColor: row.color}}>{row.key}</a>;
+                return (<li className={styles.DetailList__Item}>{link} - {time}</li>);
+            })}
+        </ul>
     </div>);
 }
 
