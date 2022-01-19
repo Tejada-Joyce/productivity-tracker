@@ -23,86 +23,86 @@
     "activities": [{
             "name": "Monday shift",
             "category": "Work",
-            "startTime": "2022-01-10T09:00:00.000",
-            "endTime": "2022-01-10T12:00:00.000"
+            "startTime": "2022-01-16T09:00:00.000",
+            "endTime": "2022-01-16T12:00:00.000"
         },
         {
             "name": "Bike ride",
             "category": "Exercise",
-            "startTime": "2022-01-10T05:00:00.000",
-            "endTime": "2022-01-10T08:00:00.000"
+            "startTime": "2022-01-16T05:00:00.000",
+            "endTime": "2022-01-16T08:00:00.000"
         },
         {
             "name": "Twitter fighting",
             "category": "Social Media",
-            "startTime": "2022-01-10T17:30:00.000",
-            "endTime": "2022-01-10T19:00:00.000"
+            "startTime": "2022-01-16T17:30:00.000",
+            "endTime": "2022-01-16T19:00:00.000"
         },
         {
             "name": "Netflix",
             "category": "Entertainment",
-            "startTime": "2022-01-10T18:00:00.000",
-            "endTime": "2022-01-10T20:30:00.000"
+            "startTime": "2022-01-16T18:00:00.000",
+            "endTime": "2022-01-16T20:30:00.000"
         },
         {
             "name": "Math class",
             "category": "School",
-            "startTime": "2022-01-10T12:30:00.000",
-            "endTime": "2022-01-10T17:00:00.000"
+            "startTime": "2022-01-16T12:30:00.000",
+            "endTime": "2022-01-16T17:00:00.000"
         },
         {
             "name": "Tuesday shift",
             "category": "Work",
-            "startTime": "2022-01-11T09:00:00.000",
-            "endTime": "2022-01-11T15:00:00.000"
+            "startTime": "2022-01-17T09:00:00.000",
+            "endTime": "2022-01-17T15:00:00.000"
         },
         {
             "name": "Bike ride",
             "category": "Exercise",
-            "startTime": "2022-01-11T07:00:00.000",
-            "endTime": "2022-01-11T08:00:00.000"
+            "startTime": "2022-01-17T07:00:00.000",
+            "endTime": "2022-01-17T08:00:00.000"
         },
         {
             "name": "Facebook",
             "category": "Social Media",
-            "startTime": "2022-01-11T17:30:00.000",
-            "endTime": "2022-01-11T18:00:00.000"
+            "startTime": "2022-01-17T17:30:00.000",
+            "endTime": "2022-01-17T18:00:00.000"
         },
         {
             "name": "Netflix",
             "category": "Entertainment",
-            "startTime": "2022-01-11T18:00:00.000",
-            "endTime": "2022-01-11T19:30:00.000"
+            "startTime": "2022-01-17T18:00:00.000",
+            "endTime": "2022-01-17T19:30:00.000"
         },
         {
             "name": "Science class",
             "category": "School",
-            "startTime": "2022-01-11T15:30:00.000",
-            "endTime": "2022-01-11T17:00:00.000"
+            "startTime": "2022-01-17T15:30:00.000",
+            "endTime": "2022-01-17T17:00:00.000"
         },
         {
             "name": "Weight lifting",
             "category": "Exercise",
-            "startTime": "2022-01-12T07:00:00.000",
-            "endTime": "2022-01-12T010:00:00.000"
+            "startTime": "2022-01-18T07:00:00.000",
+            "endTime": "2022-01-18T10:00:00.000"
         },
         {
             "name": "Mindless TikTok scrolling",
             "category": "Social Media",
-            "startTime": "2022-01-12T14:30:00.000",
-            "endTime": "2022-01-12T19:00:00.000"
+            "startTime": "2022-01-18T14:30:00.000",
+            "endTime": "2022-01-18T19:00:00.000"
         },
         {
             "name": "Netflix",
             "category": "Entertainment",
-            "startTime": "2022-01-12T19:00:00.000",
-            "endTime": "2022-01-12T21:00:00.000"
+            "startTime": "2022-01-18T19:00:00.000",
+            "endTime": "2022-01-18T21:00:00.000"
         },
         {
             "name": "English class",
             "category": "School",
-            "startTime": "2022-01-12T15:30:00.000",
-            "endTime": "2022-01-12T17:30:00.000"
+            "startTime": "2022-01-18T15:30:00.000",
+            "endTime": "2022-01-18T17:30:00.000"
         }
     ]
 }
