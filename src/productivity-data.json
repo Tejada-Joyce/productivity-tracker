@@ -103,6 +103,12 @@
             "category": "School",
             "startTime": "2022-01-18T15:30:00.000",
             "endTime": "2022-01-18T17:30:00.000"
+        },
+        {
+            "name": "Spanish class",
+            "category": "School",
+            "startTime": "2022-01-12T15:30:00.000",
+            "endTime": "2022-01-12T20:00:00.000"
         }
     ]
 }
