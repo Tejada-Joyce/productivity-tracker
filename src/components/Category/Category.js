@@ -44,13 +44,20 @@ const Category = () => {
     });
 
     //Pass the content to category dynamically to display multiple cards by date
-    console.log(groupByDateCategory)
+    let categoryList = <span>No Category Listed!</span>;
+
+    if (groupByDateCategory.size > 0) {
+        categoryList = [];
+        groupByDateCategory.forEach((values, key) => {
+            categoryList.push(<CategoryCard key={key} date={key} list={values}></CategoryCard>)
+        })
+    }
 
     return (
-        <>
-        <h1>{category_type}</h1>
-        <CategoryCard />
-        </>
+        <div>
+            <h1>{category_type}</h1>
+            {categoryList}
+        </div>
     );
 }
 
