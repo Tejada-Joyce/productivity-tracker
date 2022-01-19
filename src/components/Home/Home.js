@@ -8,10 +8,10 @@ import styles from './Home.module.css';
 const Home = () => {
     const userData = require('../../productivity-data.json');
     const [startDate, setStartDate] = useState(moment());
-    const [endDate, setEndDate] = useState(null);
+    // const [endDate, setEndDate] = useState(null);
 
     const changeDateHandler = (event) => {
-        if (event.target.value === 'true') {
+        if (event.target.value === 'true' && !moment().isSame(startDate, 'day')) {
             setStartDate(prevState => moment(prevState).add(1, 'd'));
         } else if (event.target.value === 'false') {
             setStartDate(prevState => moment(prevState).subtract(1, 'd'));
@@ -57,7 +57,7 @@ const Home = () => {
                 animationEasing="ease-out"
                 data={transformUserData(userData.categories, userData.activities, startDate)}
                 radius={46}
-                label={({dataEntry}) => dataEntry.percentage === 0 ? "" : `${dataEntry.key} - ${Math.round(dataEntry.percentage)}%`}
+                label={({dataEntry}) => dataEntry.percentage === 0 ? "" : `${Math.round(dataEntry.percentage)}%`}
                 labelPosition={70}
                 labelStyle={{fontSize: "3px"}}
             />
