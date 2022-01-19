@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import CategoryCard from "./CategoryCard";
+import styles from "./Category.module.css"
 import DATA from "../../productivity-data.json";
 
 const Category = () => {
@@ -54,7 +55,7 @@ const Category = () => {
     }
 
     return (
-        <div>
+        <div className={styles.categoryDisplay}>
             <h1>{category_type}</h1>
             {categoryList}
         </div>
