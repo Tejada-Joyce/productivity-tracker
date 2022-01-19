@@ -10,5 +10,16 @@
     font-family: 'Roboto', sans-serif;
     color: #000000;
     font-weight: bold;
-    margin-bottom: 25px;
+    padding-left: 1rem;
+    
+}
+
+.categoryOptions {
+    display: flex;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+.categoryAdd {
+    padding: 0.5rem 1rem;
 }

@@ -1,6 +1,8 @@
 import { useParams } from "react-router-dom";
 import CategoryCard from "./CategoryCard";
-import styles from "./Category.module.css"
+import CatergoryDropDown from "./CatergoryDropDown";
+import { Link } from "react-router-dom";
+import styles from "./Category.module.css";
 import DATA from "../../productivity-data.json";
 
 const Category = () => {
@@ -57,6 +59,12 @@ const Category = () => {
     return (
         <div className={styles.categoryDisplay}>
             <h1>{category_type}</h1>
+            <div className={styles.categoryOptions}>
+                <CatergoryDropDown />
+                <Link to="/addActivities" className={styles.categoryAdd}>
+                    Add New
+                </Link>
+            </div>
             {categoryList}
         </div>
     );
