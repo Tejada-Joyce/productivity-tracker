@@ -1,0 +1,41 @@
+.PieContainer {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    width: 100%;
+}
+
+.DetailList {
+    list-style: none;
+    width: 100%;
+    background-color: #eeeeee;
+    padding: 20px;
+}
+
+.DetailList__Item {
+    margin-bottom: 4px;
+}
+
+.DetailList__Link {
+    display: inline-block;
+    border: 1px solid #d1d1d1;
+    border-radius: 18px;
+    width: 190px;
+    padding: 2px 5px;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+}
+
+.DetailList__Link:hover {
+    border: 1px solid #949494;
+    text-decoration: none;
+    color: black;
+    filter: brightness(90%);
+}
+
+@media (min-width: 600px) {
+    .PieContainer {
+        width: 40%;
+    }
+}
