@@ -1,18 +1,39 @@
 import { useParams } from "react-router-dom";
+import React, { useState, useEffect, useCallback } from "react";
 import CategoryCard from "./CategoryCard";
 import CatergoryDropDown from "./CatergoryDropDown";
 import { Link } from "react-router-dom";
 import styles from "./Category.module.css";
-import DATA from "../../productivity-data.json";
+
+import {config} from '../../firebaseConfig';
 
 const Category = () => {
     //Get the parameters passed on the routes
     const { category_type } = useParams();
 
-    /*TO DO: 
-        Create the fetch when data is available*/
-    //Get the productivity data 
-    const dataReceived = DATA.activities;
+    //Create the fetch when data is available*/
+    const fireBaseServer  = `${config.db}activities.json`;
+    const [dataReceived, setdataReceived] = useState([]);
+   
+    const fetchActivitiesHandler = useCallback(async () => {
+        try {
+            const response = await fetch(fireBaseServer);
+            const data = await response.json();
+            
+            const dataLoaded = []
+            for (const key in data) {
+                dataLoaded.push({...data[key]})
+            }
+
+            setdataReceived(dataLoaded);
+        } catch (error) {
+            console.log(error);
+        }
+    }, [])
+
+    useEffect(() => {
+        fetchActivitiesHandler();
+    }, [fetchActivitiesHandler]);
  
     //Filter the content based on category_type
     const categoryData = dataReceived.filter(entry => entry.category === category_type);
