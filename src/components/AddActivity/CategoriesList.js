@@ -23,16 +23,6 @@ const CategoriesList = ({ categories, chosenCategory, onSaveCategory }) => {
             </option>
           ))}
       </datalist>
-      {/* <select value={chosenCategory} onChange={categoryChangeHandler} required>
-      
-      <option value="">Choose a Category</option>
-      {categories &&
-        categories.map((category, index) => (
-          <option key={index} value={category}>
-            {category}
-          </option>
-        ))}
-    </select> */}
     </>
   );
 };

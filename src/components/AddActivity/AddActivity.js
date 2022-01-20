@@ -125,12 +125,6 @@ const AddActivities = () => {
             value={enteredEndTime}
             onChange={endTimeChangeHandler}
           />
-          {/* <label htmlFor="birthdaytime">Birthday (date and time):</label>
-        <input
-        type="datetime-local"
-        id="birthdaytime"
-        name="birthdaytime"
-      />*/}
           <button className={styles.button} type="submit">
             Add
           </button>
