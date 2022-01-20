@@ -5,6 +5,7 @@ import TimeItem from "./TimeItem";
 import "./AddActivity.css";
 import Stack from "@mui/material/Stack";
 import useFetch from "../../helper/useFetch";
+// import { useNavigate } from "react-router";
 
 const convertToJson = async (res) => {
   if (res.ok) {
@@ -33,12 +34,13 @@ const AddActivities = () => {
   const [enteredActivity, setEnteredActivity] = useState("");
   const [enteredStartTime, setEnteredStartTime] = useState(new Date());
   const [enteredEndTime, setEntereEndTime] = useState(new Date());
+  // const navigate = useNavigate();
 
   //Create the fetch when data is available*/
-  const fireBaseServer = `${config.db}categories.json`;
+  const categoriesServer = `${config.db}categories.json`;
   const activitiesServer = `${config.db}activities.json`;
 
-  const { dataReceived, error } = useFetch(fireBaseServer);
+  const { dataReceived, error } = useFetch(categoriesServer);
 
   const saveCategoryHandler = (chosenCategory) => {
     setChosenCategory(chosenCategory);
@@ -77,11 +79,21 @@ const AddActivities = () => {
 
     const response = await postData(activitiesServer, newActivity);
     console.log(response);
+
+    // if (!dataReceived.includes(chosenCategory)) {
+    //   const newCategory = {
+    //     category: chosenCategory,
+    //   };
+    //   const catResponse = await postData(categoriesServer, newCategory);
+    //   console.log(catResponse);
+    // }
+
     setErrorMessage();
     setChosenCategory("");
     setEnteredActivity("");
     setEnteredStartTime(new Date());
     setEntereEndTime(new Date());
+    // navigate(`/category/${chosenCategory}/`);
   };
 
   return (
