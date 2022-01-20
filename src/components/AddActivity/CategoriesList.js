@@ -1,4 +1,4 @@
-import "./CategoriesList.css";
+import styles from "./CategoriesList.module.css";
 
 const CategoriesList = ({ categories, chosenCategory, onSaveCategory }) => {
   const categoryChangeHandler = (e) => {
@@ -16,7 +16,6 @@ const CategoriesList = ({ categories, chosenCategory, onSaveCategory }) => {
         required
       />
       <datalist id="categories">
-        <option value="">Choose a Category</option>
         {categories &&
           categories.map((category, index) => (
             <option key={index} value={category}>

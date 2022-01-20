@@ -2,7 +2,7 @@ import { useState } from "react";
 import { config } from "../../firebaseConfig";
 import CategoriesList from "./CategoriesList";
 import TimeItem from "./TimeItem";
-import "./AddActivity.css";
+import styles from "./AddActivity.module.css";
 import Stack from "@mui/material/Stack";
 import useFetch from "../../helper/useFetch";
 // import { useNavigate } from "react-router";
@@ -97,11 +97,11 @@ const AddActivities = () => {
   };
 
   return (
-    <div className="container">
+    <div className={styles.container}>
       <h1>Add Activity</h1>
       {errorMessage && <p>{errorMessage}</p>}
       <form onSubmit={addActivityHandler}>
-        <Stack spacing={2} className="stack_container">
+        <Stack spacing={2} className={styles.stack_container}>
           {error && <div>{error}</div>}
           <CategoriesList
             categories={dataReceived}
@@ -109,6 +109,7 @@ const AddActivities = () => {
             onSaveCategory={saveCategoryHandler}
           />
           <input
+            className={styles.input}
             value={enteredActivity}
             placeholder="Activity Name"
             onChange={activityChangeHandler}
@@ -130,7 +131,9 @@ const AddActivities = () => {
         id="birthdaytime"
         name="birthdaytime"
       />*/}
-          <button type="submit">Add</button>
+          <button className={styles.button} type="submit">
+            Add
+          </button>
         </Stack>
       </form>
     </div>

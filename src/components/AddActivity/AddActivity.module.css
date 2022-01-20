@@ -1,0 +1,55 @@
+.container {
+  text-align: center;
+  background: #eceeef;
+  border-radius: 5px;
+  padding: 30px;
+  margin: 50px 30px 50px;
+  box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+}
+
+.container form {
+  margin: 0% 2% 2%;
+  padding: 0% 1%;
+  /* color: #000000; */
+}
+
+.container input,
+.container button {
+  display: block;
+  font-size: 1rem;
+  padding: 2% 2%;
+  border-radius: 7px;
+  width: 100%;
+}
+
+.container option {
+  font-size: 1rem;
+  width: 100%;
+}
+
+.container datalist {
+  font-size: 1rem;
+  width: 100%;
+}
+
+.stack_container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+@media only screen and (min-width: 855px) {
+  .stack_container {
+    width: 80%;
+    margin-top: 20px;
+  }
+
+  .container {
+    display: flex;
+    text-align: left;
+    column-gap: 5%;
+  }
+
+  .container form {
+    flex-grow: 2;
+  }
+}
