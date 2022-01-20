@@ -1,9 +1,31 @@
-import categories from "../../data/categories.json";
+import { useState } from "react";
+import { config } from "../../firebaseConfig";
 import CategoriesList from "./CategoriesList";
 import TimeItem from "./TimeItem";
 import "./AddActivity.css";
-import { useState } from "react";
 import Stack from "@mui/material/Stack";
+import useFetch from "../../helper/useFetch";
+
+const convertToJson = async (res) => {
+  if (res.ok) {
+    return res.json();
+  } else {
+    throw { name: "servicesError", message: await res.json() };
+  }
+};
+
+const postData = async (url, sentData) => {
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(sentData),
+  };
+  const response = await fetch(url, options).then(convertToJson);
+  console.log(response);
+  return response;
+};
 
 const AddActivities = () => {
   const [errorMessage, setErrorMessage] = useState();
@@ -11,6 +33,12 @@ const AddActivities = () => {
   const [enteredActivity, setEnteredActivity] = useState("");
   const [enteredStartTime, setEnteredStartTime] = useState(new Date());
   const [enteredEndTime, setEntereEndTime] = useState(new Date());
+
+  //Create the fetch when data is available*/
+  const fireBaseServer = `${config.db}categories.json`;
+  const activitiesServer = `${config.db}activities.json`;
+
+  const { dataReceived, error } = useFetch(fireBaseServer);
 
   const saveCategoryHandler = (chosenCategory) => {
     setChosenCategory(chosenCategory);
@@ -28,7 +56,7 @@ const AddActivities = () => {
     setEntereEndTime(newValue);
   };
 
-  const addActivityHandler = (e) => {
+  const addActivityHandler = async (e) => {
     e.preventDefault();
     if (!chosenCategory || enteredActivity.trim().length === 0) {
       setErrorMessage("Please fill out all fields.");
@@ -41,12 +69,14 @@ const AddActivities = () => {
     }
 
     const newActivity = {
-      name: enteredActivity,
       category: chosenCategory,
-      startTime: enteredStartTime,
       endTime: enteredEndTime,
+      name: enteredActivity,
+      startTime: enteredStartTime,
     };
-    console.log(newActivity);
+
+    const response = await postData(activitiesServer, newActivity);
+    console.log(response);
     setErrorMessage();
     setChosenCategory("");
     setEnteredActivity("");
@@ -60,8 +90,9 @@ const AddActivities = () => {
       {errorMessage && <p>{errorMessage}</p>}
       <form onSubmit={addActivityHandler}>
         <Stack spacing={2} className="stack_container">
+          {error && <div>{error}</div>}
           <CategoriesList
-            categories={categories}
+            categories={dataReceived}
             chosenCategory={chosenCategory}
             onSaveCategory={saveCategoryHandler}
           />
