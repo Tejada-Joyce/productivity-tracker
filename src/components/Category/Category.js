@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import React, { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import CategoryCard from "./CategoryCard";
 import CatergoryDropDown from "./CatergoryDropDown";
 import { Link } from "react-router-dom";

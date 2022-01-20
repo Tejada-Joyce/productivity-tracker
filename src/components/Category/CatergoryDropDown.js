@@ -1,8 +1,35 @@
 import { Link } from "react-router-dom";
+import {config} from '../../firebaseConfig';
+import { useState, useEffect, useCallback } from "react";
 
 const Category = ({ match, location }) => {
+    
+    //Fetch Category
+    const fireBaseServer  = `${config.db}categories.json`;
+    const [dataReceived, setdataReceived] = useState([]);
+    
+    const fetchActivitiesHandler = useCallback(async () => {
+        try {
+            const response = await fetch(fireBaseServer);
+            const data = await response.json();
+            
+            const dataLoaded = []
+            for (const element of data) {
+                dataLoaded.push(element);
+            }
+
+            setdataReceived(dataLoaded);
+        } catch (error) {
+            console.log(error);
+        }
+    }, [])
+
+    useEffect(() => {
+        fetchActivitiesHandler();
+    }, [fetchActivitiesHandler]);
+
     //Create the list of links to be added to the drop down menu with proper parms
-    const categories = ['Work', 'Exercise', 'Social Media', 'Entertainment', 'School'].map((categorie, key) => {
+    const categories = dataReceived.map((categorie, key) => {
         return (
             <Link className="dropdown-item" to={'/category/' + categorie} key={key}>{categorie}</Link>
         )
