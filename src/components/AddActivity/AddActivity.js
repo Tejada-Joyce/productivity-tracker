@@ -41,6 +41,10 @@ const AddActivities = () => {
   const activitiesServer = `${config.db}activities.json`;
 
   const { dataReceived, error } = useFetch(categoriesServer);
+  let categories = [];
+  for (const property in dataReceived) {
+    categories = [...categories, dataReceived[property]];
+  }
 
   const saveCategoryHandler = (chosenCategory) => {
     setChosenCategory(chosenCategory);
@@ -80,13 +84,10 @@ const AddActivities = () => {
     const response = await postData(activitiesServer, newActivity);
     console.log(response);
 
-    // if (!dataReceived.includes(chosenCategory)) {
-    //   const newCategory = {
-    //     category: chosenCategory,
-    //   };
-    //   const catResponse = await postData(categoriesServer, newCategory);
-    //   console.log(catResponse);
-    // }
+    if (!categories.includes(chosenCategory)) {
+      const catResponse = await postData(categoriesServer, chosenCategory);
+      // console.log(catResponse);
+    }
 
     setErrorMessage();
     setChosenCategory("");
@@ -104,7 +105,7 @@ const AddActivities = () => {
         <Stack spacing={2} className={styles.stack_container}>
           {error && <div>{error}</div>}
           <CategoriesList
-            categories={dataReceived}
+            categories={categories}
             chosenCategory={chosenCategory}
             onSaveCategory={saveCategoryHandler}
           />

@@ -16,7 +16,7 @@ const useFetch = (url) => {
     async function fetchData() {
       try {
         const data = await fetch(url).then(convertToJson);
-        console.log(data);
+        // console.log(data);
         setDataReceived(data);
       } catch (err) {
         setError(err.message);
