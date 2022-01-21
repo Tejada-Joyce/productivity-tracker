@@ -12,10 +12,9 @@ const Category = ({ match, location }) => {
         try {
             const response = await fetch(fireBaseServer);
             const data = await response.json();
-            
             const dataLoaded = []
-            for (const element of data) {
-                dataLoaded.push(element);
+            for (const key in data) {
+                dataLoaded.push(data[key]);
             }
 
             setdataReceived(dataLoaded);
