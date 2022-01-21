@@ -1,18 +1,29 @@
-import "./CategoriesList.css";
+import styles from "./CategoriesList.module.css";
 
 const CategoriesList = ({ categories, chosenCategory, onSaveCategory }) => {
   const categoryChangeHandler = (e) => {
     onSaveCategory(e.target.value);
   };
   return (
-    <select value={chosenCategory} onChange={categoryChangeHandler} required>
-      <option value="">Choose a Category</option>
-      {categories.map((category) => (
-        <option key={category.id} value={category.name}>
-          {category.name}
-        </option>
-      ))}
-    </select>
+    <>
+      <input
+        list="categories"
+        name="category"
+        id="category"
+        value={chosenCategory}
+        onChange={categoryChangeHandler}
+        placeholder="Choose a Category or Type a New One"
+        required
+      />
+      <datalist id="categories">
+        {categories &&
+          categories.map((category, index) => (
+            <option key={index} value={category}>
+              {category}
+            </option>
+          ))}
+      </datalist>
+    </>
   );
 };
 
