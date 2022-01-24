@@ -1,14 +1,42 @@
 import { PieChart } from 'react-minimal-pie-chart';
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import DatePicker from './DatePicker';
 import moment from 'moment';
+import { config } from "../../firebaseConfig";
+// import useFetch from '../../helper/useFetch';
 
 import styles from './Home.module.css';
 
 const Home = () => {
-    const userData = require('../../productivity-data.json');
+    //Create the fetch when data is available*/
+    const activityUrl = `${config.db}activities.json`;
+    const categoryUrl = `${config.db}categories.json`;
+    const [userActivities, setUserActivities] = useState([]);
+    const [userCategories, setUserCategories] = useState([]);
+   
+    const fetchActivitiesHandler = useCallback(async () => {
+        try {
+            const activityRes = await fetch(activityUrl);
+            const activityData = await activityRes.json();
+            
+            const activitiesLoaded = Object.keys(activityData).map(k => activityData[k]);
+            setUserActivities(activitiesLoaded);
+
+            const categoryRes = await fetch(categoryUrl);
+            const categoryData = await categoryRes.json();
+
+            const categoriesLoaded = Object.keys(categoryData).map(k => {return { name: categoryData[k] } });
+            setUserCategories(categoriesLoaded);
+        } catch (error) {
+            console.log(error);
+        }
+    }, []);
+
+    useEffect(() => {
+        fetchActivitiesHandler();
+    }, [fetchActivitiesHandler]);
+
     const [startDate, setStartDate] = useState(moment());
-    // const [endDate, setEndDate] = useState(null);
 
     const changeDateHandler = (event) => {
         if (event.target.value === 'true' && !moment().isSame(startDate, 'day')) {
@@ -34,7 +62,6 @@ const Home = () => {
                 let diffMins = start.diff(end, 'minutes');
                 return sum + diffMins;
             }, 0);
-
     
             return {
                 key: cat.name,
@@ -55,7 +82,7 @@ const Home = () => {
                 animate
                 animationDuration={500}
                 animationEasing="ease-out"
-                data={transformUserData(userData.categories, userData.activities, startDate)}
+                data={transformUserData(userCategories, userActivities, startDate)}
                 radius={46}
                 label={({dataEntry}) => dataEntry.percentage === 0 ? "" : `${Math.round(dataEntry.percentage)}%`}
                 labelPosition={70}
@@ -63,7 +90,7 @@ const Home = () => {
             />
         </div>
         <ul className={styles.DetailList}>
-            {transformUserData(userData.categories, userData.activities, startDate).map(row => {
+            {transformUserData(userCategories, userActivities, startDate).map(row => {
                 let time = row.value === 0 ? '' : <span>{moment.duration(row.value, 'minutes').humanize()}</span>;
                 let link = <a className={styles.DetailList__Link} href={`/category/${row.key}`} style={{backgroundColor: row.color}}>{row.key}</a>;
                 return (<li className={styles.DetailList__Item}>{link} - {time}</li>);
