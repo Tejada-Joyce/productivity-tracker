@@ -42,6 +42,7 @@
     .HomeLayout {
         display: flex;
         flex-direction: row;
+        max-height: 650px;
     }
 
     .DetailList {
