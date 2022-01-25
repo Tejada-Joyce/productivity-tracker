@@ -139,7 +139,6 @@ const AddActivities = () => {
             onSaveCategory={saveCategoryHandler}
           />
           <input
-            className={styles.input}
             value={enteredActivity}
             placeholder="Activity Name"
             onChange={activityChangeHandler}
@@ -154,9 +153,7 @@ const AddActivities = () => {
             endTimeChangeHandler={endTimeChangeHandler}
           />
 
-          <button className={styles.button} type="submit">
-            Add
-          </button>
+          <button type="submit">Add</button>
         </Stack>
       </form>
     </div>

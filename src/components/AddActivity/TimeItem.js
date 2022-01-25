@@ -24,31 +24,30 @@ const TimeItem = ({
 
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
-      {/* <DateTimePicker
-        disableFuture
-        renderInput={(props) => <TextField {...props} />}
-        label={label}
-        value={value}
-        onChange={onChange}
-      /> */}
       <DatePicker
         disableFuture
         label="Date"
         value={enteredStartDate}
         onChange={startDateChangeHandler}
-        renderInput={(params) => <TextField {...params} />}
+        renderInput={(params) => (
+          <TextField {...params} sx={{ backgroundColor: "white" }} />
+        )}
       />
       <TimePicker
         label="Start Time"
         value={startTime}
         onChange={startTimeChangeHandler}
-        renderInput={(params) => <TextField {...params} />}
+        renderInput={(params) => (
+          <TextField {...params} sx={{ backgroundColor: "white" }} />
+        )}
       />
       <TimePicker
         label="End Time"
         value={endTime}
         onChange={endTimeChangeHandler}
-        renderInput={(params) => <TextField {...params} />}
+        renderInput={(params) => (
+          <TextField {...params} sx={{ backgroundColor: "white" }} />
+        )}
       />
     </LocalizationProvider>
   );
