@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { createRef, useRef, useState } from "react";
 import { config } from "../../firebaseConfig";
 import CategoriesList from "./CategoriesList";
 import TimeItem from "./TimeItem";
@@ -22,6 +22,7 @@ const convertToJson = async (res) => {
   if (res.ok) {
     return res.json();
   } else {
+    // eslint-disable-next-line no-throw-literal
     throw { name: "servicesError", message: await res.json() };
   }
 };
@@ -47,6 +48,10 @@ const AddActivities = () => {
   const [enteredStartDate, setEnteredStartDate] = useState(midnightTime);
   const [startTime, setStartTime] = useState(new Date());
   const [endTime, setEndTime] = useState(new Date());
+  const timeRef = createRef();
+  const categoryRef = createRef();
+  const activityRef = useRef();
+
   // const navigate = useNavigate();
 
   //Create the fetch when data is available*/
@@ -82,24 +87,32 @@ const AddActivities = () => {
 
   const addActivityHandler = async (e) => {
     e.preventDefault();
-    if (!chosenCategory || enteredActivity.trim().length === 0) {
+    if (
+      !chosenCategory ||
+      chosenCategory.trim().length === 0 ||
+      enteredActivity.trim().length === 0
+    ) {
       setErrorMessage("Please fill out all fields.");
+      if (!chosenCategory || chosenCategory.trim().length === 0) {
+        categoryRef.current.focus();
+      } else {
+        activityRef.current.focus();
+      }
       return;
     }
 
     const duration = getTimeDifference(startTime, endTime);
     const enteredEndTime = addMiliSecToDate(enteredStartDate, duration);
 
-    console.log(enteredEndTime);
-
-    console.log(enteredStartDate);
     if (!enteredEndTime || !enteredStartDate) {
-      setErrorMessage("Time error.");
+      setErrorMessage("Time error. Please try again.");
       return;
     }
 
     if (enteredEndTime <= enteredStartDate) {
-      setErrorMessage("Please enter a valid time.");
+      setErrorMessage("Please enter a valid start time.");
+      console.log(timeRef);
+      timeRef.current.focus();
       return;
     }
 
@@ -110,12 +123,10 @@ const AddActivities = () => {
       startTime: enteredStartDate,
     };
 
-    const response = await postData(activitiesServer, newActivity);
-    console.log(response);
+    await postData(activitiesServer, newActivity);
 
     if (!categories.includes(chosenCategory)) {
-      const catResponse = await postData(categoriesServer, chosenCategory);
-      // console.log(catResponse);
+      await postData(categoriesServer, chosenCategory);
     }
 
     setErrorMessage();
@@ -124,12 +135,15 @@ const AddActivities = () => {
     setEnteredStartDate(midnightTime);
     setStartTime(new Date());
     setEndTime(new Date());
+    categoryRef.current.focus();
   };
 
   return (
     <div className={styles.container}>
-      <h1>Add Activity</h1>
-      {errorMessage && <p>{errorMessage}</p>}
+      <div>
+        <h1>Add Activity</h1>
+        {errorMessage && <p>{errorMessage}</p>}
+      </div>
       <form onSubmit={addActivityHandler}>
         <Stack spacing={2} className={styles.stack_container}>
           {error && <div>{error}</div>}
@@ -137,8 +151,10 @@ const AddActivities = () => {
             categories={categories}
             chosenCategory={chosenCategory}
             onSaveCategory={saveCategoryHandler}
+            ref={categoryRef}
           />
           <input
+            ref={activityRef}
             value={enteredActivity}
             placeholder="Activity Name"
             onChange={activityChangeHandler}
@@ -151,6 +167,7 @@ const AddActivities = () => {
             startDateChangeHandler={startDateChangeHandler}
             startTimeChangeHandler={startTimeChangeHandler}
             endTimeChangeHandler={endTimeChangeHandler}
+            ref={timeRef}
           />
 
           <button className={styles.button} type="submit">
