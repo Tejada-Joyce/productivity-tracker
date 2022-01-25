@@ -34,8 +34,17 @@
     filter: brightness(90%);
 }
 
-@media (min-width: 600px) {
+@media (min-width: 700px) {
     .PieContainer {
-        width: 40%;
+        width: 50%;
+    }
+
+    .HomeLayout {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .DetailList {
+        width: 50%;
     }
 }

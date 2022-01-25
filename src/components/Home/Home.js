@@ -3,16 +3,18 @@ import { useState, useEffect, useCallback } from 'react';
 import DatePicker from './DatePicker';
 import moment from 'moment';
 import { config } from "../../firebaseConfig";
-// import useFetch from '../../helper/useFetch';
 
 import styles from './Home.module.css';
 
 const Home = () => {
-    //Create the fetch when data is available*/
-    const activityUrl = `${config.db}activities.json`;
-    const categoryUrl = `${config.db}categories.json`;
+    const [startDate, setStartDate] = useState(moment());
+
     const [userActivities, setUserActivities] = useState([]);
     const [userCategories, setUserCategories] = useState([]);
+    const activityUrl = `${config.db}activities.json`;
+    const categoryUrl = `${config.db}categories.json`;
+
+    const hexList = require('./HexColors.json');
    
     const fetchActivitiesHandler = useCallback(async () => {
         try {
@@ -25,18 +27,20 @@ const Home = () => {
             const categoryRes = await fetch(categoryUrl);
             const categoryData = await categoryRes.json();
 
-            const categoriesLoaded = Object.keys(categoryData).map(k => {return { name: categoryData[k] } });
+            const categoriesLoaded = Object.keys(categoryData).map((k, i) => {
+                return {
+                    name: categoryData[k],
+                    hex: hexList[i]
+                };
+            });
             setUserCategories(categoriesLoaded);
         } catch (error) {
             console.log(error);
         }
     }, []);
-
     useEffect(() => {
         fetchActivitiesHandler();
     }, [fetchActivitiesHandler]);
-
-    const [startDate, setStartDate] = useState(moment());
 
     const changeDateHandler = (event) => {
         if (event.target.value === 'true' && !moment().isSame(startDate, 'day')) {
@@ -71,7 +75,7 @@ const Home = () => {
         });
     };
 
-    return (<div>
+    return (<div className={styles.HomeLayout}>
         <div className={styles.PieContainer}>
             <DatePicker
                 clickHandler={changeDateHandler}
