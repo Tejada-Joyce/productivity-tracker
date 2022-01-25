@@ -14,11 +14,10 @@
 }
 
 .container input,
-.container button,
 .container fieldset {
   display: block;
   font-size: 1rem;
-  padding: 2% 2%;
+  padding: 3% 5%;
   border-radius: 7px;
   width: 100%;
   border-color: transparent;
@@ -29,10 +28,16 @@
   border-width: 1px;
 }
 
-.container button {
+.button {
   background-color: #1565c0;
   color: white;
   border-color: #1565c0;
+  display: block;
+  font-size: 1rem;
+  padding: 2%;
+  border-radius: 7px;
+  width: 100%;
+  border-color: transparent;
 }
 
 .container option {
@@ -43,6 +48,10 @@
 .container datalist {
   font-size: 1rem;
   width: 100%;
+}
+
+.container legend {
+  margin: -4%;
 }
 
 .stack_container {
@@ -64,5 +73,14 @@
 
   .container form {
     flex-grow: 2;
+  }
+
+  .container input,
+  .container fieldset {
+    padding: 2%;
+  }
+
+  .container legend {
+    margin: -1%;
   }
 }
