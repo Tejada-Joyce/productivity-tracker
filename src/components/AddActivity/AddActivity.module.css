@@ -14,12 +14,25 @@
 }
 
 .container input,
-.container button {
+.container button,
+.container fieldset {
   display: block;
   font-size: 1rem;
   padding: 2% 2%;
   border-radius: 7px;
   width: 100%;
+  border-color: transparent;
+}
+
+.container input:hover {
+  border-color: #000000;
+  border-width: 1px;
+}
+
+.container button {
+  background-color: #1565c0;
+  color: white;
+  border-color: #1565c0;
 }
 
 .container option {

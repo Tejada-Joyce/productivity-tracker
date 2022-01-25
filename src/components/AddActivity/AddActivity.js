@@ -7,6 +7,17 @@ import Stack from "@mui/material/Stack";
 import useFetch from "../../helper/useFetch";
 // import { useNavigate } from "react-router";
 
+const getTimeDifference = (startT, endT) => {
+  const diff = endT.getTime() - startT.getTime();
+  return diff;
+};
+
+const addMiliSecToDate = (date, milliseconds) => {
+  date = new Date(date).getTime();
+  const newDate = new Date(milliseconds + date);
+  return newDate;
+};
+
 const convertToJson = async (res) => {
   if (res.ok) {
     return res.json();
@@ -29,11 +40,13 @@ const postData = async (url, sentData) => {
 };
 
 const AddActivities = () => {
+  const midnightTime = new Date(new Date().setHours(0, 0, 0, 0));
   const [errorMessage, setErrorMessage] = useState();
   const [chosenCategory, setChosenCategory] = useState("");
   const [enteredActivity, setEnteredActivity] = useState("");
-  const [enteredStartTime, setEnteredStartTime] = useState(new Date());
-  const [enteredEndTime, setEntereEndTime] = useState(new Date());
+  const [enteredStartDate, setEnteredStartDate] = useState(midnightTime);
+  const [startTime, setStartTime] = useState(new Date());
+  const [endTime, setEndTime] = useState(new Date());
   // const navigate = useNavigate();
 
   //Create the fetch when data is available*/
@@ -54,12 +67,17 @@ const AddActivities = () => {
     setEnteredActivity(e.target.value);
   };
 
+  const startDateChangeHandler = (newValue) => {
+    newValue = new Date(newValue);
+    setEnteredStartDate(new Date(newValue.setHours(0, 0, 0, 0)));
+  };
+
   const startTimeChangeHandler = (newValue) => {
-    setEnteredStartTime(newValue);
+    setStartTime(newValue);
   };
 
   const endTimeChangeHandler = (newValue) => {
-    setEntereEndTime(newValue);
+    setEndTime(newValue);
   };
 
   const addActivityHandler = async (e) => {
@@ -69,7 +87,18 @@ const AddActivities = () => {
       return;
     }
 
-    if (enteredEndTime <= enteredStartTime) {
+    const duration = getTimeDifference(startTime, endTime);
+    const enteredEndTime = addMiliSecToDate(enteredStartDate, duration);
+
+    console.log(enteredEndTime);
+
+    console.log(enteredStartDate);
+    if (!enteredEndTime || !enteredStartDate) {
+      setErrorMessage("Time error.");
+      return;
+    }
+
+    if (enteredEndTime <= enteredStartDate) {
       setErrorMessage("Please enter a valid time.");
       return;
     }
@@ -78,7 +107,7 @@ const AddActivities = () => {
       category: chosenCategory,
       endTime: enteredEndTime,
       name: enteredActivity,
-      startTime: enteredStartTime,
+      startTime: enteredStartDate,
     };
 
     const response = await postData(activitiesServer, newActivity);
@@ -92,9 +121,9 @@ const AddActivities = () => {
     setErrorMessage();
     setChosenCategory("");
     setEnteredActivity("");
-    setEnteredStartTime(new Date());
-    setEntereEndTime(new Date());
-    // navigate(`/category/${chosenCategory}/`);
+    setEnteredStartDate(midnightTime);
+    setStartTime(new Date());
+    setEndTime(new Date());
   };
 
   return (
@@ -110,25 +139,21 @@ const AddActivities = () => {
             onSaveCategory={saveCategoryHandler}
           />
           <input
-            className={styles.input}
             value={enteredActivity}
             placeholder="Activity Name"
             onChange={activityChangeHandler}
             required
           />
           <TimeItem
-            label="Start Date/Time"
-            value={enteredStartTime}
-            onChange={startTimeChangeHandler}
+            enteredStartDate={enteredStartDate}
+            startTime={startTime}
+            endTime={endTime}
+            startDateChangeHandler={startDateChangeHandler}
+            startTimeChangeHandler={startTimeChangeHandler}
+            endTimeChangeHandler={endTimeChangeHandler}
           />
-          <TimeItem
-            label="End Date/Time"
-            value={enteredEndTime}
-            onChange={endTimeChangeHandler}
-          />
-          <button className={styles.button} type="submit">
-            Add
-          </button>
+
+          <button type="submit">Add</button>
         </Stack>
       </form>
     </div>
