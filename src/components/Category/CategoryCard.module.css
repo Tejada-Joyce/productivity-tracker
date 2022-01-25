@@ -14,3 +14,9 @@
     color: #000000;
     font-weight: bold;
 }
+
+@media only screen and (max-width: 610px) {
+    .categoryCard {
+        display: block;
+    }
+}
