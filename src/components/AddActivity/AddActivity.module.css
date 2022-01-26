@@ -1,5 +1,3 @@
-/* color: #16a3a3 */
-
 .container {
   text-align: center;
   background: #eceeef;
@@ -8,11 +6,23 @@
   margin: 50px 30px 50px;
   box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
 }
+.container > div {
+  padding-left: 6%;
+}
+
+.container h1 {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.container p {
+  color: #ff0000;
+  text-align: left;
+}
 
 .container form {
   margin: 0% 2% 2%;
   padding: 0% 1%;
-  /* color: #000000; */
 }
 
 .container input,
@@ -39,6 +49,7 @@
   border-radius: 7px;
   width: 100%;
   border-color: transparent;
+  margin-top: 20px !important;
 }
 
 .container option {
@@ -56,7 +67,7 @@
 }
 
 .stack_container {
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -72,9 +83,16 @@
     column-gap: 5%;
   }
 
+  .container > div {
+    padding-left: 0;
+  }
+
+  .container h1 {
+    text-align: center;
+  }
+
   .container p {
     padding-left: 1rem;
-    color: #ff0000;
   }
 
   .container form {

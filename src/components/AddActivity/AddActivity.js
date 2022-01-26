@@ -5,7 +5,7 @@ import TimeItem from "./TimeItem";
 import styles from "./AddActivity.module.css";
 import Stack from "@mui/material/Stack";
 import useFetch from "../../helper/useFetch";
-// import { useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 
 const getTimeDifference = (startT, endT) => {
   const diff = endT.getTime() - startT.getTime();
@@ -36,7 +36,6 @@ const postData = async (url, sentData) => {
     body: JSON.stringify(sentData),
   };
   const response = await fetch(url, options).then(convertToJson);
-  console.log(response);
   return response;
 };
 
@@ -52,9 +51,9 @@ const AddActivities = () => {
   const categoryRef = createRef();
   const activityRef = useRef();
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  //Create the fetch when data is available*/
+  //Create the fetch when data is available
   const categoriesServer = `${config.db}categories.json`;
   const activitiesServer = `${config.db}activities.json`;
 
@@ -135,7 +134,8 @@ const AddActivities = () => {
     setEnteredStartDate(midnightTime);
     setStartTime(new Date());
     setEndTime(new Date());
-    categoryRef.current.focus();
+    // categoryRef.current.focus();
+    navigate(`/category/${chosenCategory}`);
   };
 
   return (
