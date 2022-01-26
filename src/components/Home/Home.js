@@ -88,7 +88,7 @@ const Home = () => {
                 animationEasing="ease-out"
                 background='#eeeeee'
                 data={transformUserData(userCategories, userActivities, startDate)}
-                radius={46}
+                radius={48}
                 label={({dataEntry}) => dataEntry.percentage === 0 ? "" : `${Math.round(dataEntry.percentage)}%`}
                 labelPosition={70}
                 labelStyle={{fontSize: "3px"}}
