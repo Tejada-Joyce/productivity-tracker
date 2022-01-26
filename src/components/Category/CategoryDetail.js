@@ -8,7 +8,7 @@ const CategoryDetail = (props) => {
                     <span>{activity.name}</span>
                 </div>
                 <div>
-                    <span>{parseInt(activity.hours).toFixed(2)} Hr</span>
+                    <span>{parseFloat(activity.hours).toFixed(1)} Hr</span>
                 </div>
             </div>
         );
