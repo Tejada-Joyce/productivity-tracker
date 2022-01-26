@@ -86,6 +86,7 @@ const Home = () => {
                 animate
                 animationDuration={500}
                 animationEasing="ease-out"
+                background='#eeeeee'
                 data={transformUserData(userCategories, userActivities, startDate)}
                 radius={46}
                 label={({dataEntry}) => dataEntry.percentage === 0 ? "" : `${Math.round(dataEntry.percentage)}%`}
@@ -95,7 +96,7 @@ const Home = () => {
         </div>
         <ul className={styles.DetailList}>
             {transformUserData(userCategories, userActivities, startDate).map(row => {
-                let time = row.value === 0 ? '' : <span>{moment.duration(row.value, 'minutes').humanize()}</span>;
+                let time = row.value === 0 ? '0 hours' : <span>{moment.duration(row.value, 'minutes').humanize()}</span>;
                 let link = <a className={styles.DetailList__Link} href={`/category/${row.key}`} style={{backgroundColor: row.color}}>{row.key}</a>;
                 return (<li className={styles.DetailList__Item}>{link} - {time}</li>);
             })}
