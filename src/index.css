@@ -27,13 +27,17 @@ li .nav-link {
   color: white !important;
 }
 
+li .nav-link:hover {
+  color: #eeeeee !important;
+}
+
 .dropdown-menu {
   background-color: #eceeef !important;
   padding: 2px !important;
 }
 
 .dropdown-item:hover {
-  background-color: #007bff !important;
+  background-color: #1565c0 !important;
   color: white !important;
 }
 
