@@ -24,15 +24,15 @@ const Navigation = () => {
         id="navbarSupportedContent"
       >
         <ul className="navbar-nav ml-auto">
-          <li>
+          <li className={styles['nav-item']}>
             <Link className="nav-link" to="/">
               Home
             </Link>
           </li>
-          <li className="nav-item dropdown">
+          <li className={`${styles['nav-item']} dropdown`}>
             <CatergoryDropDown />
           </li>
-          <li className="nav-item">
+          <li className={styles['nav-item']}>
             <Link className="nav-link" to="/addActivities">
               Add Activity
             </Link>

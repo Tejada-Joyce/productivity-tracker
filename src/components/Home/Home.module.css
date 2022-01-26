@@ -1,22 +1,22 @@
-.PieContainer {
+.pieContainer {
     display: flex;
     flex-direction: column;
     align-content: center;
     width: 100%;
 }
 
-.DetailList {
+.detailList {
     list-style: none;
     width: 100%;
     background-color: #eeeeee;
     padding: 20px;
 }
 
-.DetailList__Item {
+.detailList__item {
     margin-bottom: 4px;
 }
 
-.DetailList__Link {
+.detailList__link {
     display: inline-block;
     border: 1px solid #d1d1d1;
     border-radius: 18px;
@@ -27,7 +27,7 @@
     color: black;
 }
 
-.DetailList__Link:hover {
+.detailList__link:hover {
     border: 1px solid #949494;
     text-decoration: none;
     color: black;
@@ -35,17 +35,17 @@
 }
 
 @media (min-width: 700px) {
-    .PieContainer {
+    .pieContainer {
         width: 50%;
         max-height: 650px;
     }
     
-    .HomeLayout {
+    .homeLayout {
         display: flex;
         flex-direction: row;
     }
 
-    .DetailList {
+    .detailList {
         width: 50%;
         height: 100%;
         margin-top: 15%;

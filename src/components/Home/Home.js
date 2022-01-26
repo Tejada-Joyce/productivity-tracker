@@ -75,14 +75,14 @@ const Home = () => {
         });
     };
 
-    return (<div className={styles.HomeLayout}>
-        <div className={styles.PieContainer}>
+    return (<div className={styles.homeLayout}>
+        <div className={styles.pieContainer}>
             <DatePicker
                 clickHandler={changeDateHandler}
                 date={moment().isSame(startDate, 'd') ? `Today, ${startDate.format("MMM Do")}` : startDate.format("dddd, MMM Do")}
             />
             <PieChart
-                className={styles.PieContainer__Pie}
+                className={styles.pieContainer__pie}
                 animate
                 animationDuration={500}
                 animationEasing="ease-out"
@@ -94,11 +94,11 @@ const Home = () => {
                 labelStyle={{fontSize: "3px"}}
             />
         </div>
-        <ul className={styles.DetailList}>
+        <ul className={styles.detailList}>
             {transformUserData(userCategories, userActivities, startDate).map(row => {
                 let time = row.value === 0 ? '0 hours' : <span>{moment.duration(row.value, 'minutes').humanize()}</span>;
-                let link = <a className={styles.DetailList__Link} href={`/category/${row.key}`} style={{backgroundColor: row.color}}>{row.key}</a>;
-                return (<li className={styles.DetailList__Item}>{link} - {time}</li>);
+                let link = <a className={styles.detailList__link} href={`/category/${row.key}`} style={{backgroundColor: row.color}}>{row.key}</a>;
+                return (<li className={styles.detailList__item}>{link} - {time}</li>);
             })}
         </ul>
     </div>);

@@ -5,3 +5,7 @@
 .nav img {
   height: 60px;
 }
+
+.nav-link:hover {
+  color: #eeeeee;
+}
