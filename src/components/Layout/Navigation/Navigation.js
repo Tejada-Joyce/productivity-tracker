@@ -2,10 +2,9 @@ import { Link } from "react-router-dom";
 import CatergoryDropDown from "../../Category/CatergoryDropDown"
 
 const Navigation = () => {
-
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <Link className="nav-link" to="/">OurAppLogo</Link>
+            <Link className="nav-link" to="/"><img src="Logo.png" alt="Logo" style={{height:'50px'}}/></Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent"
             aria-expanded="false"
