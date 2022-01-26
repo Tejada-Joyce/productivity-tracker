@@ -16,5 +16,11 @@ h1 {
   font-family: "Roboto", sans-serif;
   color: #000000;
   font-weight: bold !important;
-  padding-left: 1rem;
+  padding-left: 0;
+}
+
+@media only screen and (min-width: 855px) {
+  h1 {
+    padding-left: 1rem;
+  }
 }
