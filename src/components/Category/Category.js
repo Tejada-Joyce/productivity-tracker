@@ -68,7 +68,7 @@ const Category = () => {
     });
 
     //Pass the content to category dynamically to display multiple cards by date
-    let categoryList = <span>No Category Listed!</span>;
+    let categoryList = <span>No Activity Listed!</span>;
 
     if (groupByDateCategory.size > 0) {
         categoryList = [];
