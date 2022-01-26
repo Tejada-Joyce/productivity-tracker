@@ -40,6 +40,10 @@
   border-width: 1px;
 }
 
+.container input:focus {
+  outline-color: #1565c0 !important;
+}
+
 .button {
   background-color: #1565c0;
   color: white;
