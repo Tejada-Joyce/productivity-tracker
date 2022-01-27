@@ -1,73 +1,72 @@
 .pieContainer {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  width: 100%;
 }
 
-.pieContainer>svg {
-    width: 80%;
-    margin: auto;
+.pieContainer > svg {
+  width: 80%;
+  margin: auto;
 }
 
 .detailList {
-    list-style: none;
-    width: 100%;
-    background-color: #eeeeee;
-    padding: 20px;
-    margin-top: 12px;
-    margin-bottom: 0;
+  list-style: none;
+  width: 100%;
+  background-color: #eeeeee;
+  padding: 20px;
+  margin-top: 12px;
+  margin-bottom: 0;
 }
 
 .detailList__item {
-    margin-bottom: 4px;
+  margin-bottom: 7px;
+  display: flex;
+  column-gap: 5%;
+  margin-left: 5%;
 }
 
 .detailList__link {
-    display: inline-block;
-    border: 1px solid #d1d1d1;
-    border-radius: 18px;
-    width: 190px;
-    padding: 2px 5px;
-    text-align: center;
-    text-decoration: none;
-    color: black;
+  display: inline-block;
+  border: 1px solid #d1d1d1;
+  border-radius: 18px;
+  width: 190px;
+  padding: 2px 5px;
+  text-align: center;
+  text-decoration: none;
+  color: black;
 }
 
 .detailList__link:hover {
-    border: 1px solid #949494;
-    text-decoration: none;
-    color: black;
-    filter: brightness(90%);
+  border: 1px solid #949494;
+  text-decoration: none;
+  color: black;
+  filter: brightness(90%);
 }
 
 @media (min-width: 700px) {
-    .pieContainer {
-        width: 50%;
-        max-height: 600px;
-    }
+  .pieContainer {
+    width: 50%;
+    max-height: 600px;
+  }
 
-    .pieContainer>svg {
-        width: 65%;
-        min-width: 330px;
-        margin: auto;
-    }
-    
-    .homeLayout {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-    }
+  .pieContainer > svg {
+    width: 65%;
+    min-width: 330px;
+    margin: auto;
+  }
 
-    .detailList {
-        width: 50%;
-        height: 100%;
-        margin-top: 7%;
-        border-top-left-radius: 18px;
-        border-bottom-left-radius: 18px;
-    }
+  .homeLayout {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
 
-    body {
-        /* overflow-y: hidden; */
-    }
+  .detailList {
+    width: 50%;
+    height: 100%;
+    margin-top: 7%;
+    border-top-left-radius: 18px;
+    border-bottom-left-radius: 18px;
+  }
 }
