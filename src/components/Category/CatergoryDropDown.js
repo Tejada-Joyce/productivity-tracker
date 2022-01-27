@@ -11,8 +11,15 @@ const Category = ({ match, location }) => {
     const fetchActivitiesHandler = useCallback(async () => {
         try {
             const response = await fetch(fireBaseServer);
-            const data = await response.json();
-            const dataLoaded = []
+            // set to json data, if null set to default list
+            const data = await response.json() ?? {
+                1: "Work",
+                2: "Exercise",
+                3: "Social Media",
+                4: "School",
+                5: "Entertainment"
+            };
+            const dataLoaded = [];
             for (const key in data) {
                 dataLoaded.push(data[key]);
             }
