@@ -6,17 +6,7 @@ import styles from "./AddActivity.module.css";
 import Stack from "@mui/material/Stack";
 import useFetch from "../../helper/useFetch";
 import { useNavigate } from "react-router";
-
-const getTimeDifference = (startT, endT) => {
-  const diff = endT.getTime() - startT.getTime();
-  return diff;
-};
-
-const addMiliSecToDate = (date, milliseconds) => {
-  date = new Date(date).getTime();
-  const newDate = new Date(milliseconds + date);
-  return newDate;
-};
+import moment from "moment";
 
 const convertToJson = async (res) => {
   if (res.ok) {
@@ -40,13 +30,12 @@ const postData = async (url, sentData) => {
 };
 
 const AddActivities = () => {
-  const midnightTime = new Date(new Date().setHours(0, 0, 0, 0));
   const [errorMessage, setErrorMessage] = useState();
   const [chosenCategory, setChosenCategory] = useState("");
   const [enteredActivity, setEnteredActivity] = useState("");
-  const [enteredStartDate, setEnteredStartDate] = useState(midnightTime);
-  const [startTime, setStartTime] = useState(new Date());
-  const [endTime, setEndTime] = useState(new Date());
+  const [enteredStartDate, setEnteredStartDate] = useState(moment());
+  const [startTime, setStartTime] = useState(moment());
+  const [endTime, setEndTime] = useState(moment());
   const timeRef = createRef();
   const categoryRef = createRef();
   const activityRef = useRef();
@@ -72,16 +61,15 @@ const AddActivities = () => {
   };
 
   const startDateChangeHandler = (newValue) => {
-    newValue = new Date(newValue);
-    setEnteredStartDate(new Date(newValue.setHours(0, 0, 0, 0)));
+    setEnteredStartDate(moment(newValue));
   };
 
   const startTimeChangeHandler = (newValue) => {
-    setStartTime(newValue);
+    setStartTime(moment(newValue));
   };
 
   const endTimeChangeHandler = (newValue) => {
-    setEndTime(newValue);
+    setEndTime(moment(newValue));
   };
 
   const addActivityHandler = async (e) => {
@@ -100,26 +88,43 @@ const AddActivities = () => {
       return;
     }
 
-    const duration = getTimeDifference(startTime, endTime);
-    const enteredEndTime = addMiliSecToDate(enteredStartDate, duration);
-
-    if (!enteredEndTime || !enteredStartDate) {
+    if (!endTime || !enteredStartDate) {
       setErrorMessage("Time error. Please try again.");
       return;
     }
 
-    if (enteredEndTime <= enteredStartDate) {
+    if (endTime <= enteredStartDate || endTime <= startTime) {
       setErrorMessage("Please enter a valid start time.");
       console.log(timeRef);
       timeRef.current.focus();
       return;
     }
 
+    let startTimeString = moment().set({
+      year: enteredStartDate.year(),
+      month: enteredStartDate.month(),
+      date: enteredStartDate.date(),
+      hour: startTime.hour(),
+      minute: startTime.minute(),
+      second: startTime.second(),
+      millisecond: startTime.millisecond()
+    }).format();
+
+    let endTimeString = moment().set({
+      year: enteredStartDate.year(),
+      month: enteredStartDate.month(),
+      date: enteredStartDate.date(),
+      hour: endTime.hour(),
+      minute: endTime.minute(),
+      second: endTime.second(),
+      millisecond: endTime.millisecond()
+    }).format();
+
     const newActivity = {
       category: chosenCategory,
-      endTime: enteredEndTime,
+      endTime: endTimeString,
       name: enteredActivity,
-      startTime: enteredStartDate,
+      startTime: startTimeString,
     };
 
     await postData(activitiesServer, newActivity);
@@ -131,9 +136,9 @@ const AddActivities = () => {
     setErrorMessage();
     setChosenCategory("");
     setEnteredActivity("");
-    setEnteredStartDate(midnightTime);
-    setStartTime(new Date());
-    setEndTime(new Date());
+    setEnteredStartDate(moment());
+    setStartTime(moment());
+    setEndTime(moment());
     // categoryRef.current.focus();
     navigate(`/category/${chosenCategory}`);
   };
