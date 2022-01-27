@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import styles from "./Category.module.css";
 
 import {config} from '../../firebaseConfig';
+import moment from "moment";
 
 const Category = () => {
     //Get the parameters passed on the routes
@@ -47,21 +48,27 @@ const Category = () => {
     const groupByDateCategory = new Map();
 
     //Group the content based on the date with name and hours
-    categoryData.forEach(entry => {
-        let date = new Date(entry.startTime);
+    categoryData.sort((a, b) => {
+        let bStart = moment(b.startTime);
+        let aStart = moment(a.startTime);
 
-        if (!groupByDateCategory.has(date.toDateString())) {
-            groupByDateCategory.set(date.toDateString(), [{
+        return aStart.valueOf() - bStart.valueOf();
+    }).forEach(entry => {
+        let momentFormat = "dddd, MMM Do yyyy";
+        let date = moment(entry.startTime);
+
+        if (!groupByDateCategory.has(date.format(momentFormat))) {
+            groupByDateCategory.set(date.format(momentFormat), [{
                 name: entry.name,
-                hours: getHourDifference(new Date(entry.endTime), date)
+                hours: getHourDifference(moment(entry.endTime), date)
             }])
         } else {
-            groupByDateCategory.set(date.toDateString(), 
+            groupByDateCategory.set(date.format(momentFormat), 
             [
-                ...groupByDateCategory.get(date.toDateString()), 
+                ...groupByDateCategory.get(date.format(momentFormat)), 
                 {
                     name: entry.name,
-                    hours: getHourDifference(new Date(entry.endTime), date)
+                    hours: getHourDifference(moment(entry.endTime), date)
                 }
             ]);
         }
