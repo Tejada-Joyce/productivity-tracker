@@ -1,6 +1,7 @@
 import { PieChart } from 'react-minimal-pie-chart';
 import { useState, useEffect, useCallback } from 'react';
 import DatePicker from './DatePicker';
+import { Link } from "react-router-dom";
 import moment from 'moment';
 import { config } from "../../firebaseConfig";
 
@@ -21,7 +22,11 @@ const Home = () => {
             const activityRes = await fetch(activityUrl);
             const activityData = await activityRes.json();
             
-            const activitiesLoaded = Object.keys(activityData).map(k => activityData[k]);
+            const activitiesLoaded = Object.keys(activityData).map(k => {
+                console.log(activityData[k]);
+                console.log(moment(activityData[k].startTime));
+                return activityData[k];
+            });
             setUserActivities(activitiesLoaded);
 
             const categoryRes = await fetch(categoryUrl);
@@ -97,7 +102,7 @@ const Home = () => {
         <ul className={styles.detailList}>
             {transformUserData(userCategories, userActivities, startDate).map(row => {
                 let time = row.value === 0 ? '0 hours' : <span>{moment.duration(row.value, 'minutes').humanize()}</span>;
-                let link = <a className={styles.detailList__link} href={`/category/${row.key}`} style={{backgroundColor: row.color}}>{row.key}</a>;
+                let link = <Link className={styles.detailList__link} to={`/category/${row.key}`} style={{backgroundColor: row.color}}>{row.key}</Link>;
                 return (<li className={styles.detailList__item}>{link} - {time}</li>);
             })}
         </ul>
