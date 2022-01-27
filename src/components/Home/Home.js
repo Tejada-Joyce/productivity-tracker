@@ -23,14 +23,21 @@ const Home = () => {
             const activityData = await activityRes.json();
             
             const activitiesLoaded = Object.keys(activityData).map(k => {
-                console.log(activityData[k]);
-                console.log(moment(activityData[k].startTime));
+                // console.log(activityData[k]);
+                // console.log(moment(activityData[k].startTime).format());
                 return activityData[k];
             });
             setUserActivities(activitiesLoaded);
 
             const categoryRes = await fetch(categoryUrl);
-            const categoryData = await categoryRes.json();
+            // set to json data, if null set to default list
+            const categoryData = await categoryRes.json() ?? {
+                1: "Work",
+                2: "Exercise",
+                3: "Social Media",
+                4: "School",
+                5: "Entertainment"
+            };
 
             const categoriesLoaded = Object.keys(categoryData).map((k, i) => {
                 return {
