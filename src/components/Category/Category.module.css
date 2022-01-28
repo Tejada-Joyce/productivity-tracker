@@ -1,25 +1,25 @@
 .categoryDisplay {
-    background-color: #eceeef;
-    border-radius: 5px;
-    padding: 30px;
-    margin: 50px 30px 50px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  background-color: #eceeef;
+  border-radius: 5px;
+  padding: 30px;
+  margin: 50px 30px 50px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-.categoryDisplay>h1 {
-    font-family: 'Roboto', sans-serif;
-    color: #000000;
-    font-weight: bold;
-    padding-left: 1rem;
-    
+.categoryDisplay > h1 {
+  font-family: "Roboto", sans-serif;
+  color: #000000;
+  font-weight: bold;
+  padding-left: 1rem;
+  word-wrap: break-word;
 }
 
 .categoryOptions {
-    display: flex;
-    margin-top: -10px;
-    margin-bottom: 10px;
+  display: flex;
+  margin-top: -10px;
+  margin-bottom: 10px;
 }
 
 .categoryAdd {
-    padding: 0.5rem 1rem;
+  padding: 0.5rem 1rem;
 }
