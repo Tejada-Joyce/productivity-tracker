@@ -6,7 +6,7 @@ const Navigation = () => {
   return (
     <nav className={`navbar navbar-expand-lg navbar-light ${styles.nav}`}>
       <Link className="nav-link" to="/">
-        <img src="Logo.png" alt="Logo" />
+        <img src="/Logo.png" alt="Logo" />
       </Link>
       <button
         className="navbar-toggler"
