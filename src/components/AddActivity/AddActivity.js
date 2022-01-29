@@ -99,7 +99,6 @@ const AddActivities = () => {
 
     if (endTime <= startTime) {
       setErrorMessage("Please enter a valid start time.");
-      console.log(timeRef);
       timeRef.current.focus();
       return;
     }
