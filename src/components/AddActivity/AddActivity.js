@@ -7,6 +7,7 @@ import Stack from "@mui/material/Stack";
 import useFetch from "../../helper/useFetch";
 import { useNavigate } from "react-router";
 import moment from "moment";
+import { useLocation } from "react-router-dom";
 
 const convertToJson = async (res) => {
   if (res.ok) {
@@ -34,8 +35,10 @@ const postData = async (url, sentData) => {
 };
 
 const AddActivities = () => {
+  const location = useLocation();
+  const { from } = location.state || false;
   const [errorMessage, setErrorMessage] = useState();
-  const [chosenCategory, setChosenCategory] = useState("");
+  const [chosenCategory, setChosenCategory] = useState(from || "");
   const [enteredActivity, setEnteredActivity] = useState("");
   const [enteredStartDate, setEnteredStartDate] = useState(moment());
   const [startTime, setStartTime] = useState(moment());
