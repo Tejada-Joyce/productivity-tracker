@@ -123,7 +123,7 @@ const Home = () => {
       </div>
       <ul className={styles.detailList}>
         {transformUserData(userCategories, userActivities, startDate).map(
-          (row) => {
+          (row, index) => {
             let time =
               row.value === 0 ? (
                 <span>{"0 hours"}</span>
@@ -140,7 +140,7 @@ const Home = () => {
               </Link>
             );
             return (
-              <li className={styles.detailList__item}>
+              <li key={index} className={styles.detailList__item}>
                 {link} - {time}
               </li>
             );

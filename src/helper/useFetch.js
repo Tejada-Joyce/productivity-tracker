@@ -4,6 +4,7 @@ const convertToJson = async (res) => {
   if (res.ok) {
     return res.json();
   } else {
+    // eslint-disable-next-line no-throw-literal
     throw { name: "servicesError", message: await res.json() };
   }
 };
