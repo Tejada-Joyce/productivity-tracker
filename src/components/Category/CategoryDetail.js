@@ -1,6 +1,5 @@
 import styles from "./CategoryDetail.module.css";
 import { config } from "../../firebaseConfig";
-import { useEffect } from "react";
 
 const convertToJson = async (res) => {
   if (res.ok) {
