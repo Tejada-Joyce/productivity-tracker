@@ -99,7 +99,11 @@ const Category = () => {
       <h1>{category_type}</h1>
       <div className={styles.categoryOptions}>
         <CatergoryDropDown />
-        <Link to="/addActivities" className={styles.categoryAdd}>
+        <Link
+          to="/addActivities"
+          state={{ from: `${category_type}` }}
+          className={styles.categoryAdd}
+        >
           Add New
         </Link>
       </div>
