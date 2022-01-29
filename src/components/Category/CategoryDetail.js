@@ -29,10 +29,9 @@ const CategoryDetail = (props) => {
   const activitiesServer = `${config.db}activities`;
 
   const deleteHandler = async (id) => {
-    console.log(id, "was clicked");
     if (window.confirm("Are you sure you want to delete this activity?")) {
-      const response = await deleteData(`${activitiesServer}/${id}.json`);
-      console.log(response);
+      await deleteData(`${activitiesServer}/${id}.json`);
+      window.location.reload();
     }
   };
 
