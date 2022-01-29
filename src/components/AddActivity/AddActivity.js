@@ -18,15 +18,19 @@ const convertToJson = async (res) => {
 };
 
 const postData = async (url, sentData) => {
-  const options = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(sentData),
-  };
-  const response = await fetch(url, options).then(convertToJson);
-  return response;
+  try {
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(sentData),
+    };
+    const response = await fetch(url, options).then(convertToJson);
+    return response;
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 const AddActivities = () => {
@@ -100,25 +104,29 @@ const AddActivities = () => {
       return;
     }
 
-    let startTimeString = moment().set({
-      year: enteredStartDate.year(),
-      month: enteredStartDate.month(),
-      date: enteredStartDate.date(),
-      hour: startTime.hour(),
-      minute: startTime.minute(),
-      second: startTime.second(),
-      millisecond: startTime.millisecond()
-    }).format();
+    let startTimeString = moment()
+      .set({
+        year: enteredStartDate.year(),
+        month: enteredStartDate.month(),
+        date: enteredStartDate.date(),
+        hour: startTime.hour(),
+        minute: startTime.minute(),
+        second: startTime.second(),
+        millisecond: startTime.millisecond(),
+      })
+      .format();
 
-    let endTimeString = moment().set({
-      year: enteredStartDate.year(),
-      month: enteredStartDate.month(),
-      date: enteredStartDate.date(),
-      hour: endTime.hour(),
-      minute: endTime.minute(),
-      second: endTime.second(),
-      millisecond: endTime.millisecond()
-    }).format();
+    let endTimeString = moment()
+      .set({
+        year: enteredStartDate.year(),
+        month: enteredStartDate.month(),
+        date: enteredStartDate.date(),
+        hour: endTime.hour(),
+        minute: endTime.minute(),
+        second: endTime.second(),
+        millisecond: endTime.millisecond(),
+      })
+      .format();
 
     const newActivity = {
       category: chosenCategory,
