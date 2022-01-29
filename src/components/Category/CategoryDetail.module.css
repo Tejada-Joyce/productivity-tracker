@@ -1,6 +1,13 @@
 .categoryDetail {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 2fr 1fr 10%;
+  align-items: center;
+  margin-bottom: 7px;
+}
+
+.categoryDetail i {
+  font-size: 23px;
+  color: #1565c0;
 }
 
 @media only screen and (min-width: 440px) {
