@@ -2,7 +2,7 @@
 _A React demo application_
 CSE 490R
 
-Trackprod is an application that allows you to track the hours you spend on different activities and classify them on different category to better keep track of your productivity.
+Trackprod is an application that allows you to track the hours you spend on different activities and classify them on different categories to better keep track of your productivity.
 
 https://trackprod.netlify.app/
 
