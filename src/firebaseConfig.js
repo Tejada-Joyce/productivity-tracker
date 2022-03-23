@@ -1,3 +1,3 @@
 export const config = {
-  db: "https://activity-track-2f36d-default-rtdb.firebaseio.com/",
+  db: "https://track-prod-56111-default-rtdb.firebaseio.com/",
 };
